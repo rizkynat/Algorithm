@@ -1,0 +1,2 @@
+# Algorithm
+Everithing about algorithm.
