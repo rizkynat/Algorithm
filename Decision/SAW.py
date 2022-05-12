@@ -1,11 +1,14 @@
 import pandas as pd
 import numpy as np
 
-def normalization(table,row, col, r):
+def normalization(table,row, col, r, cost):
     #initilize array
     for x in range(row):
         for y in range(col):
-            r[x][y] = round(table[table.columns[y]][x]/max(table[table.columns[y]]), 2)
+            if(table.columns[y] not in cost):
+                r[x][y] = round(table[table.columns[y]][x]/max(table[table.columns[y]]), 2)
+            else:
+                r[x][y] = round(min(table[table.columns[y]])/table[table.columns[y]][x], 2)
 
 #print(table.columns[2])
     print(r)
@@ -37,7 +40,8 @@ def main():
     #weight or bobot
     weight = [0.35, 0.25, 0.25, 0.15]
     #list of criteria
-    index_criteria = ['c1','c2','c3','c4']
+    index_criteria = ['c1','c2','c3','c4']    
+    cost = np.array([])
     #list of alternatif
     index_alternatif = ['rina','rani','reni','renu','roni','rossy']
     #table
@@ -46,7 +50,7 @@ def main():
     col = table.shape[1]
     size = table.size
     r = [[0 for x in range(col)] for y in range(row)]
-    normalization(table, row, col, r)
+    normalization(table, row, col, r, cost)
     ranked(row, col, weight, r)
 
 if __name__ == "__main__":
