@@ -132,8 +132,8 @@ def findBestMove(board):
 
 #drive code
 board = [['x','o','x'],
-         ['o','o','x'],
-         ['_','_','_']]
+         ['o','_','x'],
+         ['_','_','x']]
 bestMove = findBestMove(board)
 
 print("The optimal move is :")
